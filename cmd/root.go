@@ -44,7 +44,7 @@ var rootCmd = &cobra.Command{
 			subpath := disk.Name
 			switch controller {
 			case "SCSI":
-				deviceInfo.WithLabelValues(disk.Name, string(disk.SizeBytes), disk.StorageController.String(), disk.Vendor, disk.Model, disk.SerialNumber).Set(1)
+				deviceInfo.WithLabelValues(disk.Name, strconv.Itoa(int(disk.SizeBytes)), disk.StorageController.String(), disk.Vendor, disk.Model, disk.SerialNumber).Set(1)
 				dev, err := smart.OpenSata("/dev/" + subpath)
 				fmt.Println("/dev/" + subpath)
 				if err != nil {
@@ -82,6 +82,7 @@ var rootCmd = &cobra.Command{
 					threshold.Add(float64(thr.Thresholds[id]))
 				}
 			case "NVMe":
+				deviceInfo.WithLabelValues(disk.Name, strconv.Itoa(int(disk.SizeBytes)), disk.StorageController.String(), disk.Vendor, disk.Model, disk.SerialNumber).Set(1)
 				dev, err := smart.OpenNVMe("/dev/" + subpath)
 				if err != nil {
 					log.Fatal(err)
