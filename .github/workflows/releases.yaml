@@ -14,7 +14,7 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: '1.21.x'
-          cache-dependency-path: bin/smartmon_exporter
+          # cache-dependency-path: bin/smartmon_exporter
 
       - name: Install dependencies
         run: go get .
