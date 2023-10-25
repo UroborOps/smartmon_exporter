@@ -1,13 +1,12 @@
 name: Go
-jobs:
-  build:
-    runs-on: ubuntu-latest
+
 on:
   push:
     branches:
       - "master"
-
 jobs:
+  build:
+    runs-on: ubuntu-latest
   pre-release:
     name: "Pre Release"
     runs-on: "ubuntu-latest"
